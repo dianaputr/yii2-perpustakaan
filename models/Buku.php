@@ -111,5 +111,10 @@ class Buku extends \yii\db\ActiveRecord
         return ArrayHelper::map(Buku::find()->all(),'id','nama');
     }
 
+    public static function getCount()
+    {
+        return self::find()->count();
+    }
+
    
 }

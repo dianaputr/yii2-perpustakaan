@@ -113,3 +113,12 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.kotak
+{
+    background-color: #efefef;
+    font-size: 60px;
+    height: 130px;
+    padding: 13px;
+}
