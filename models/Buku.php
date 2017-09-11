@@ -116,5 +116,10 @@ class Buku extends \yii\db\ActiveRecord
         return self::find()->count();
     }
 
+    public static function getCount()
+    {
+        return self::find()->count();
+    }
+
    
 }
