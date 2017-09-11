@@ -6,6 +6,7 @@ use Yii;
 use yii\web\UploadedFile;
 use yii\Helpers\ArrayHelper;
 
+
 /**
  * This is the model class for table "buku".
  *
@@ -109,6 +110,10 @@ class Buku extends \yii\db\ActiveRecord
     public static function getList()
     {
         return ArrayHelper::map(Buku::find()->all(),'id','nama');
+    }
+     public static function getCount()
+    {
+        return self::find()->count();
     }
 
    

@@ -51,4 +51,9 @@ class Penerbit extends \yii\db\ActiveRecord
             'tahun_terbit' => 'Tahun Terbit',
         ];
     }
+
+     public static function getCount()
+    {
+        return self::find()->count();
+    }
 }
