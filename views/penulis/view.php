@@ -11,9 +11,12 @@ $this->title ='Detail Penulis: ' .$model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Penulis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penulis-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="penulis-view box box-primary">
+<div class="box-header">
+       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    </div>
+    <div class="box-body">
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -34,9 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'alamat:ntext',
         ],
     ]) ?>
+    </div>
 
 </div>
 
+<div class="box box-primary">
+<div class="box-header">
+       <h3 class="box-title">Form Buku</h3> 
+    </div>
+    <div class="box-body">
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
@@ -60,5 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= $data->cover ?></td>
         </tr>
     <?php $i++; } ?>
+
     
 </table>
+</div>

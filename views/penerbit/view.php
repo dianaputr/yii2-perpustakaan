@@ -10,9 +10,12 @@ $this->title ='Detail Penerbit: ' .$model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Penerbits', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penerbit-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="penerbit-view box box-primary">
+<div class="box-header">
+       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    </div>
+    <div class="box-body">
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -30,5 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tahun_terbit',
         ],
     ]) ?>
+    </div>
 
 </div>

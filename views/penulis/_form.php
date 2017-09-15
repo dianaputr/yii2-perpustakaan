@@ -10,7 +10,11 @@ use app\models\JenisKelamin;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="penulis-form">
+<div class="penulis-form box box-primary">
+<div class="box-header">
+       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    </div>
+    <div class="box-body">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -32,5 +36,6 @@ use app\models\JenisKelamin;
     </div>
 
     <?php ActiveForm::end(); ?>
+    </div>
 
 </div>

@@ -7,7 +7,27 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'timeZone' => 'Asia/Jakarta',
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                   '@app/views' => '@app/themes/adminlte'
+                ],
+            ],
+        ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LcsmysUAAAAAA-no9ZigXCqF-769IlTYdjCDkBr',
+            'secret' => '6LcsmysUAAAAANifDc5tKASe4WJEyp75zGYrrYtb',
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'Rp'
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'xvdrF6oF3jO-XGqX0qvwBo7f2YT2iuW4',
@@ -38,7 +58,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => require(__DIR__ . '/db.php'),
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -47,6 +67,11 @@ $config = [
             ],
         ],
         */
+        ],
+            'modules' => [
+                'gridview' =>  [
+                'class' => '\kartik\grid\Module'
+            ]
     ],
     'params' => $params,
 ];
@@ -66,6 +91,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+
 }
 
 return $config;

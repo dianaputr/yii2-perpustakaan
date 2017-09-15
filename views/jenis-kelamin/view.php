@@ -10,9 +10,12 @@ $this->title ='Detail Jenis Kelamin: ' .$model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Jenis Kelamins', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-kelamin-view">
+<div class="jenis-kelamin-view box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header">
+        <!-- <h3 class="box-title">Detail Jenis Kelamin</h3> -->
+    </div>
+    <div class="box-body">
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -26,5 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'nama',
         ],
     ]) ?>
+    </div>
 
 </div>

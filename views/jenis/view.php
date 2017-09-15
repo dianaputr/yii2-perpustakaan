@@ -7,13 +7,16 @@ use app\models\Buku;
 /* @var $this yii\web\View */
 /* @var $model app\models\Jenis */
 
-$this->title = 'Detail Jenis: ' .$model->nama;
+$this->title = 'Detail Jenis Buku: ' .$model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Jenis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-view">
+<div class="jenis-view box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header">
+        <!-- <h3 class="box-title">Detail Jenis</h3> -->
+    </div>
+    <div class="box-body">
 
     <p>
         <?= Html::a('Sunting Jenis Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -27,9 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'nama',
         ],
     ]) ?>
+    </div>
 
 </div>
-
+<div class="box box-primary">
+<div class="box-header">
+        <h3 class="box-title">Form Buku</h3>
+    </div>
+    <div class="box-body">
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
@@ -55,3 +63,4 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $i++; } ?>
     
 </table>
+</div>

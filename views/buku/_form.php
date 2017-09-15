@@ -12,7 +12,11 @@ use app\models\Penulis;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="buku-form">
+<div class="buku-form box box-primary">
+<div class="box-header">
+        <!-- <h3 class="box-title">Form Buku</h3> -->
+    </div>
+    <div class="box-body">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
@@ -45,5 +49,6 @@ use app\models\Penulis;
     </div>
 
     <?php ActiveForm::end(); ?>
+  </div>  
 
 </div>

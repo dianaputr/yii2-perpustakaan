@@ -1,125 +1,112 @@
 <?php
 
 namespace app\models;
-use app\models\Login;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use Yii;
+use yii\Helpers\ArrayHelper;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property integer $id
+ * @property string $nama
+ * @property string $username
+ * @property string $password
+ * @property string $authKey
+ * @property string $accessToken
+ * @property integer $role
+ *
+ * @property Peminjaman[] $peminjamen
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $nama;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-    public $role;
-
-   /* private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];*/
-
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'user';
+    }
 
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['nama', 'username', 'password', 'authKey', 'accessToken', 'role'], 'required'],
+            [['role'], 'integer'],
+            [['nama', 'username', 'password'], 'string', 'max' => 255],
+            [['authKey', 'accessToken'], 'string', 'max' => 50],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'nama' => 'Nama',
+            'username' => 'Username',
+            'password' => 'Password',
+            'authKey' => 'Auth Key',
+            'accessToken' => 'Access Token',
+            'role' => 'Role',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPeminjamen()
+    {
+        return $this->hasMany(Peminjaman::className(), ['id_user' => 'id']);
+    }
     public static function findIdentity($id)
     {
-        $user = Login::findOne($id);
-        if(count($user)) {
-
-            return new static($user);
-        }
-
-        return null;
-        /*return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;*/
+        return static::findOne($id);
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        $user = Login::find()->where(['accessToken'=>$token])->one();
-
-        if(count($user)) {
-            return new static($user);
-        }
-        /*foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }*/
-
-        return null;
+        return static::findOne(['access_token' => $token]);
     }
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-
-        $user = Login::find()->where(['username'=>$username])->one();
-
-        if (count($user)) {
-            return new static($user);
-        }
-       /* foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }*/
-
-        return null;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return null;
     }
-
-    /**
-     * @inheritdoc
-     */
+    
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return null;
     }
 
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
-     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+    public static function isAdmin()
+    {
+        if(isset(Yii::$app->user->identity->id)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(User::find()->all(),'id','nama');
     }
 }

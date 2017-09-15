@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
+use app\models\Buku;
 
 
 /**
@@ -78,5 +79,20 @@ class Penulis extends \yii\db\ActiveRecord
      public static function getCount()
     {
         return self::find()->count();
+    }
+    /*public function getCount()
+    {
+        return Buku::find()
+            ->andWhere(['id_penulis' => $this->id])
+            ->count();
+    }*/
+  public function findAllBuku()
+    {
+        return $this->buku;
+
+        /*ATAU BISA JUGA KAYA GINI*/
+
+/*        return Mahasiswa::find()
+            ->where(['id_kampus' => $this->id]);*/
     }
 }

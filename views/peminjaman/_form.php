@@ -5,13 +5,17 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
 use app\models\Buku;
-use app\models\Login;
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Peminjaman */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="peminjaman-form">
+<div class="peminjaman-form box box-primary">
+<div class="box-header">
+       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    </div>
+    <div class="box-body">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -25,7 +29,7 @@ use app\models\Login;
         ]); ?>
 
     <?= $form->field($model, 'id_user')->widget(Select2::classname(), [
-            'data' => Login::getList(),
+            'data' => User::getList(),
             'language' => 'de',
             'options' => ['placeholder' => 'Select a state ...'],
             'pluginOptions' => [
@@ -42,5 +46,5 @@ use app\models\Login;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+</div>
 </div>

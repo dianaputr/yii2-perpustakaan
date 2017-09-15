@@ -2,21 +2,24 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\models\Peminjaman;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Login */
+/* @var $model app\models\User */
 
-$this->title = 'Detai User: ' .$model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Logins', 'url' => ['index']];
+$this->title = 'Detail User: ' .$model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="login-view">
+<div class="user-view box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+    <div class="box-header">
+       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    </div>
+    <div class="box-body">
 
     <p>
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting User', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+       <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar User', ['user/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
     </p>
 
@@ -27,35 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'nama',
             'username',
             'password',
-            /*'authKey',
-            'accessToken',*/
+            'authKey',
+            'accessToken',
             'role',
         ],
     ]) ?>
+    </div>
 
 </div>
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Buku</th>
-            <th>User</th>
-            <th>Waktu Peminjaman</th>
-            <th>Waktu Pengembalian</th>
-        </tr>
-        
-    </thead>
-    <tr>
-    <?php 
-    $i=1;
-    //menampilkan buku yang dimana id_jenis nya= id diview 
-    foreach (Peminjaman::find()->where(['id_user' => $model->id])->all() as $data) { ?>
-            <td><?= $i; ?></td>
-            <td><?= $data->idBuku->nama ?></td>
-            <td><?= $data->idUser->nama ?></td>
-            <td><?= $data->waktu_dipinjam ?></td>
-            <td><?= $data->waktu_pengembalian ?></td>
-        </tr>
-    <?php $i++; } ?>
-    
-</table>

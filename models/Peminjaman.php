@@ -36,7 +36,7 @@ class Peminjaman extends \yii\db\ActiveRecord
             [['id_buku', 'id_user'], 'integer'],
             [['waktu_dipinjam', 'waktu_pengembalian'], 'safe'],
             [['id_buku'], 'exist', 'skipOnError' => true, 'targetClass' => Buku::className(), 'targetAttribute' => ['id_buku' => 'id']],
-            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Login::className(), 'targetAttribute' => ['id_user' => 'id']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -67,6 +67,11 @@ class Peminjaman extends \yii\db\ActiveRecord
      */
     public function getIdUser()
     {
-        return $this->hasOne(Login::className(), ['id' => 'id_user']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+     public static function getCount()
+    {
+        return self::find()->count();
     }
 }

@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\web\UploadedFile;
 use yii\Helpers\ArrayHelper;
+use app\models\Penulis;
 
 
 /**
@@ -116,10 +117,18 @@ class Buku extends \yii\db\ActiveRecord
         return self::find()->count();
     }
 
-    public static function getCount()
+      public static function getGrafikPerPenulis()
     {
-        return self::find()->count();
-    }
+        $chart = null;
+
+        foreach(Buku::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCount().'"},';
+        }
+        return $chart;
+    } 
+
+    
 
    
 }

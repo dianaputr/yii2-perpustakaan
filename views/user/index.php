@@ -10,29 +10,54 @@ use yii\grid\GridView;
 $this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="login-index">
+<div class="user-index box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+    <div class="box-header">
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </div>
+
+    <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',
             'header' => 'No' ,
+            'headerOptions' => ['style' => 'text-align:center;'],
+
             ],
-            'nama',
-            'username',
-            'password',
-            //'authKey',
+            [
+                'attribute' => 'nama',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+                
+            ],
+            [
+                'attribute' => 'username',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+                
+            ],
+             [
+                'attribute' => 'password',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+                
+            ],
+             [
+                'attribute' => 'authKey',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+                
+            ],
             // 'accessToken',
             // 'role',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>

@@ -3,61 +3,44 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Login;
+use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
- * UserController implements the CRUD actions for Login model.
+ * UserController implements the CRUD actions for User model.
  */
 class UserController extends Controller
 {
     /**
      * @inheritdoc
      */
-      public function behaviors()
+    public function behaviors()
     {
         return [
-            'access'=>[
-                'class'=>AccessControl::className(),
-                'rules'=>[
-                    [
-                        'actions'=>[
-                            'index',
-                            'create',
-                            'update',
-                            'delete',
-                            'view'
-                        ],
-                        'allow'=>true,
-                        'matchCallback'=>function(){
-                            return (
-                                Yii::$app->user->identity->role=='1'
-                            );
-                        }
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all Login models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if(Yii::$app->request->get('export')) {
+            return $this->exportExcel(Yii::$app->request->queryParams);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,7 +49,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single Login model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      */
@@ -78,25 +61,39 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new Login model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Login();
+        $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        $referrer = Yii::$app->request->referrer;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $referrer = $_POST['referrer'];
+
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+
+            if($model->save()) {
+                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+                return $this->redirect($referrer);
+            }
+
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            'referrer'=>$referrer
+        ]);
     }
 
     /**
-     * Updates an existing Login model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -105,38 +102,58 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $referrer = Yii::$app->request->referrer;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $referrer = $_POST['referrer'];
+
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+                return $this->redirect($referrer);
+            }
+
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+
+
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'referrer'=>$referrer
+        ]);
     }
 
     /**
-     * Deletes an existing Login model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if($model->delete()) {
+            Yii::$app->session->setFlash('success','Data berhasil dihapus');
+        } else {
+            Yii::$app->session->setFlash('error','Data gagal dihapus');
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
-     * Finds the Login model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Login the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Login::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -6,13 +6,16 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Buku */
 
-$this->title = 'Detail Buku: ' .$model->nama;
+$this->title ='Detail Buku: ' .$model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Buku', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="buku-view">
+<div class="buku-view box box-primary">
 
-    <h1>Detail Buku</h1>
+    <div class="box-header">
+        <<!-- h3 class="box-title">Detail Buku</h3> -->
+    </div>
+    <div class="box-body">
 
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -41,5 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'cover',
         ],
     ]) ?>
-
+    </div>
 </div>

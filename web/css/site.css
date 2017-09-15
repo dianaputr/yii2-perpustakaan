@@ -114,19 +114,30 @@ a.desc:after {
     outline: none;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e207189d749f52a3d712366ed17865b9e5859704
 .kotak
 {
-    background-color: #efefef;
+    background-color: #00c0ef;
+    color: #FFFFFF;
     font-size: 60px;
     height: 130px;
     padding: 13px;
-<<<<<<< HEAD
 }
 
-=======
+.kotak-dua
+{
+    background-color: #f39c12;
+    color: #FFFFFF;
+    font-size: 60px;
+    height: 130px;
+    padding: 13px;
 }
->>>>>>> e207189d749f52a3d712366ed17865b9e5859704
+
+.kotak-tiga
+{
+    background-color: #dd4b39;
+    color: #FFFFFF;
+    font-size: 60px;
+    height: 130px;
+    padding: 13px;
+}
+

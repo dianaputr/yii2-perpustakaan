@@ -10,26 +10,37 @@ use yii\grid\GridView;
 $this->title = 'Jenis Buku';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-index">
+<div class="jenis-index box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+    <div class="box-header">
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah Jenis Buku', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    </div>
+
+    <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',
              'header' => 'No' ,
+             'headerOptions' => ['style' => 'text-align:center'],
+             
              ],
 
             
-            'nama',
+            [
+                'attribute' => 'nama',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+               
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>
