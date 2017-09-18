@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\User;
+use app\models\Buku;
 
 /**
  * This is the model class for table "peminjaman".

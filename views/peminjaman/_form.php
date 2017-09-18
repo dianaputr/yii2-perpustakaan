@@ -1,23 +1,36 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
-use kartik\date\DatePicker;
+use dosamigos\datepicker\DatePicker;
 use app\models\Buku;
 use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Peminjaman */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
 <div class="peminjaman-form box box-primary">
-<div class="box-header">
-       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+<div class="box-header with-border">
+       <h3 class="box-title">Form Peminjaman</h3> 
     </div>
     <div class="box-body">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id_buku')->widget(Select2::classname(), [
             'data' => Buku::getList(),
@@ -37,14 +50,33 @@ use app\models\User;
             ], 
         ]); ?>
 
-    <?= $form->field($model, 'waktu_dipinjam')->widget(DatePicker:: classname(),[]) ?>
+    <?= $form->field($model, 'waktu_dipinjam')->widget(DatePicker:: classname(),[
+            'model' => $model,
+            'attribute' => 'date',
+            'template' => '{addon}{input}',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                    ]
+    ]); ?>
 
-    <?= $form->field($model, 'waktu_pengembalian')->widget(DatePicker:: classname(),[]) ?>
+    <?= $form->field($model, 'waktu_pengembalian')->widget(DatePicker:: classname(),[
+            'model' => $model,
+            'attribute' => 'date',
+            'template' => '{addon}{input}',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                    ]
+                    ]); ?>
 
-    <div class="form-group">
+    <div class="box-footer">
+        <div class="col-sm-offset-2 col-sm-3">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Sunting', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    
 </div>
 </div>
+<?php ActiveForm::end(); ?>

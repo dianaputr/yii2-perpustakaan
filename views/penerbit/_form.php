@@ -1,20 +1,32 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Penerbit */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
 <div class="penerbit-form box box-primary">
-    <div class="box-header">
-       <!--  <h3 class="box-title">Form Mahasiswa</h3> -->
+    <div class="box-header with-border">
+       <h3 class="box-title">Form Penerbit</h3> 
     </div>
     <div class="box-body">
-
-    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -26,11 +38,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tahun_terbit')->textInput() ?>
 
-    <div class="form-group">
+    <div class="box-footer">
+        <div class="col-sm-offset-2 col-sm-3">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Sunting', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
     </div>
 
 </div>
+
+    <?php ActiveForm::end(); ?>

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="buku-view box box-primary">
 
     <div class="box-header">
-        <<!-- h3 class="box-title">Detail Buku</h3> -->
+        <!-- h3 class="box-title">Detail Buku</h3> -->
     </div>
     <div class="box-body">
 
@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([ /*menampilkan detail*/
         'model' => $model,
+        'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             
             'nama',

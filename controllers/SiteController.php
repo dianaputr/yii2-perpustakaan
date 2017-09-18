@@ -20,22 +20,23 @@ class SiteController extends Controller
     return [
         'access' => [
             'class' => \yii\filters\AccessControl::className(),
-            'only' => ['create', 'update'],
+            'only' => ['logout'],
             'rules' => [
                 // deny all POST requests
                 [
-                    'allow' => false,
-                    'verbs' => ['POST']
-                ],
-                // allow authenticated users
-                [
+                    'actions' => ['logout'],
                     'allow' => true,
                     'roles' => ['@'],
                 ],
-                // everything else is denied
             ],
         ],
-    ];
+        'verbs' => [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                    'logout' => ['post'],
+                 ],
+            ],
+        ];
 }
 
     /**
@@ -61,7 +62,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        
         return $this->render('index');
+        
     }
 
     /**

@@ -23,7 +23,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?= Yii::getAlias('@web').'/images/polindra.png'; ?>" style="width: 25px" alt="User Image"/>
-                    <span class="hidden-xs"><?= ucwords(Yii::$app->user->identity->username)?></span>
+                    <span class="hidden-xs"><?= ucwords(Yii::$app->user->identity->username) ?></span>
                     </a>
                     <ul class="dropdown-menu">
 
@@ -34,7 +34,7 @@ use yii\helpers\Html;
 
                             <!-- inner menu: contains the actual data -->
                            <p>
-                                 <?= ucwords(Yii::$app->user->identity->username)?> - Sistem Perpustakaan
+                                 <?= ucwords(Yii::$app->user->identity->username) ?> - Sistem Perpustakaan
                                 <small></small>
                             </p>
                         </li>

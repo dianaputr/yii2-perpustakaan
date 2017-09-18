@@ -55,7 +55,7 @@ print Url::to(['site/index']);
                 <p>Jumlah Peminjaman</p>
             </div>
             <div class="icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="fa fa-plus-square"></i>
             </div>
                 <h3><?= Peminjaman::getCount(); ?></h3>
                <a href="<?= Url::to(['peminjaman/index']); ?>" class="small-box-footer">More info<i class="fa fa-arrow-circle-right"></i></a>
