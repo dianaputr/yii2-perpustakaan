@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\Helpers\ArrayHelper;
 
+
 /**
  * This is the model class for table "jenis_kelamin".
  *
@@ -52,6 +53,7 @@ class JenisKelamin extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Penulis::className(), ['id_jenis_kelamin' => 'id']);
     }
+
 
     public static function getList()
     {

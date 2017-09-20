@@ -8,7 +8,7 @@ use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -69,17 +69,26 @@ class UserController extends Controller
     {
         $model = new User();
 
-        $referrer = Yii::$app->request->referrer;
+        /*$referrer = Yii::$app->request->referrer;*/
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $referrer = $_POST['referrer'];
-
+            /*$referrer = $_POST['referrer'];
+*/
             $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
 
+            $foto = UploadedFile::getInstance($model,'foto');
+            if($foto !== null){
+                $model->foto = $foto->baseName . Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s')) . '.' . $foto->extension;
+            }
+
             if($model->save()) {
+                if ($foto!==null) {
+                        $path = Yii::getAlias('@app').'/web/uploads/';
+                        $foto->saveAs($path.$model->foto, false);
+                }
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-                return $this->redirect($referrer);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
@@ -88,7 +97,7 @@ class UserController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'referrer'=>$referrer
+            /*'referrer'=>$referrer*/
         ]);
     }
 
@@ -100,18 +109,20 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+         $model = $this->findModel($id);
 
-        $referrer = Yii::$app->request->referrer;
+        /*$referrer = Yii::$app->request->referrer;*/
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $referrer = $_POST['referrer'];
+            /*$referrer = $_POST['referrer'];*/
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+
 
             if($model->save())
             {
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
-                return $this->redirect($referrer);
+                return $this->redirect(['index']);
             }
 
             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
@@ -121,10 +132,9 @@ class UserController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'referrer'=>$referrer
+            /*'referrer'=>$referrer*/
         ]);
     }
-
     /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

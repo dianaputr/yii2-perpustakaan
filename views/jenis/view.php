@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
 
     <p>
-        <?= Html::a('Sunting Jenis Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Jenis Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Jenis', ['jenis/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
     </p>
 

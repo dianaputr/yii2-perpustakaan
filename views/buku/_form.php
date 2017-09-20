@@ -56,7 +56,7 @@ use app\models\Penulis;
             ], 
         ]); ?>
 
-    <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cover')->fileInput(); ?>
 
 
     <div class="box-footer">

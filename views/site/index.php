@@ -74,6 +74,17 @@ print Url::to(['site/index']);
             </div>
         </div>
     </div>
+
+    <div class="col-sm-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Grafik Peminjaman Per Buku</h3>
+            </div>
+            <div class="box-body">
+                <?= $this->render('_grafikPeminjamanPerBuku'); ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 

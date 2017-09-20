@@ -42,7 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->idPenulis->nama;
                 },
             ],
-            'cover',
+            [
+                'attribute' => 'cover',
+                'format' => 'raw',
+                'value' => Html::img('@web/uploads/'.$model->cover,['width'=>'100px']),
+            ],
         ],
     ]) ?>
     </div>

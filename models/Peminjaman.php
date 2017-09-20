@@ -76,4 +76,15 @@ class Peminjaman extends \yii\db\ActiveRecord
     {
         return self::find()->count();
     }
+
+    public static function getGrafikPerBuku()
+    {
+        $chart = null;
+
+        foreach(Buku::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafikBuku().'"},';
+        }
+        return $chart;
+    } 
 }

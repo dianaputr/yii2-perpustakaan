@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
 
     <p>
-       <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+       <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar User', ['user/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
     </p>
 
@@ -31,9 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'nama',
             'username',
             'password',
-            'authKey',
-            'accessToken',
             'role',
+             /*'authKey',
+            'accessToken',*/
+            [
+                'attribute' => 'foto',
+                'format' => 'raw',
+                'value' => Html::img('@web/uploads/'.$model->foto,['width'=>'100px']),
+            ],
         ],
     ]) ?>
     </div>

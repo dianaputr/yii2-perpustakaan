@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('<i class="fa fa-print"></i> Export Excel Buku', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat']) ?>
         <!-- coba pake beda controller -->
          <?= Html::a('<i class="fa fa-print"></i> Export Excel Daftar Buku', ['export/export'], ['class' => 'btn btn-success btn-flat']) ?>
+         <?=  Html::a('<i class="fa fa-print"></i> Export PDF Buku', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat']) ?>
     </div>
 
     <div class="box-body">

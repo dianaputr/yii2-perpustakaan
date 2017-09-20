@@ -7,6 +7,7 @@ use yii\Helpers\ArrayHelper;
 use app\models\Buku;
 
 
+
 /**
  * This is the model class for table "penulis".
  *
@@ -94,5 +95,12 @@ class Penulis extends \yii\db\ActiveRecord
 
 /*        return Mahasiswa::find()
             ->where(['id_kampus' => $this->id]);*/
+    }
+
+    public function getCountGrafik()
+    {
+        return Buku::find()
+            ->andWhere(['id_penulis' => $this->id])
+            ->count();
     }
 }

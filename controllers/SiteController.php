@@ -9,6 +9,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use PhpOffice\PhpWord\Shared\Converter;
+
+use app\models\Pelayanan;
+
 
 class SiteController extends Controller
 {
@@ -96,7 +100,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['site/login']);
     }
 
     /**

@@ -3,9 +3,10 @@
 namespace app\models;
 
 use Yii;
-use yii\web\UploadedFile;
+
 use yii\Helpers\ArrayHelper;
 use app\models\Penulis;
+use app\models\Peminjaman;
 
 
 /**
@@ -26,7 +27,7 @@ class Buku extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public $file;
+    
     public static function tableName()
     {
         return 'buku';
@@ -40,7 +41,6 @@ class Buku extends \yii\db\ActiveRecord
         return [
             [['id_jenis', 'id_penulis'], 'integer'],
             [['id_penulis', 'cover'], 'required'],
-            [['file'],'file'],
             [['nama', 'cover'], 'string', 'max' => 255],
             /*[['cover'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],*/
             [['id_jenis'], 'exist', 'skipOnError' => true, 'targetClass' => Jenis::className(), 'targetAttribute' => ['id_jenis' => 'id']],
@@ -58,7 +58,7 @@ class Buku extends \yii\db\ActiveRecord
             'nama' => 'Nama',
             'id_jenis' => 'Jenis',
             'id_penulis' => 'Penulis',
-            'file' => 'Cover',
+            'cover' => 'Cover',
         ];
     }
 
@@ -121,14 +121,18 @@ class Buku extends \yii\db\ActiveRecord
     {
         $chart = null;
 
-        foreach(Buku::find()->all() as $data)
+        foreach(Penulis::find()->all() as $data)
         {
-            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCount().'"},';
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafik().'"},';
         }
         return $chart;
     } 
-
-    
+    public function getCountGrafikBuku()
+    {
+        return Peminjaman::find()
+            ->andWhere(['id_buku' => $this->id])
+            ->count();
+    } 
 
    
 }

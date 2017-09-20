@@ -36,11 +36,15 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?>
+    <!-- <?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'accessToken')->textInput(['maxlength' => true]) ?>
-
+ -->
     <?= $form->field($model, 'role')->textInput() ?>
+
+    <?= $form->field($model, 'foto')->fileInput(); ?>
+
+    
 
     <div class="box-footer">
         <div class="col-sm-offset-2 col-sm-3">

@@ -1,29 +1,28 @@
 <?php 
-  use app\models\Buku; 
- 
+  use app\models\Peminjaman; 
 ?>
 <script>
 
 FusionCharts.ready(function(){
       var revenueChart = new FusionCharts({
         "type": "Column3d",
-        "renderAt": "grafik-buku-per-penulis",
+        "renderAt": "grafik-peminjaman-per-buku",
         "width": "100%",
         "height": "300",
         "dataFormat": "json",
         "dataSource": {
           "chart": {
-              "caption" : "Grafik Buku Per Penulis",
-              "xAxisName": "Buku per Penulis",
+              "caption" : "Grafik Peminjaman Per Buku",
+              "xAxisName": "Peminjaman per Buku",
               "yAxisName": "Jumlah",
               "theme": "fint"
            },
           "data":        
-              [ <?php print Buku::getGrafikPerPenulis(); ?> ]
+              [ <?php print Peminjaman::getGrafikPerBuku(); ?> ]
         }
     });
     revenueChart.render();
 })
-		
+    
 </script> 
-<div id="grafik-buku-per-penulis"> FusionChart XT will load here! </div>
+<div id="grafik-peminjaman-per-buku"> FusionChart XT will load here! </div>

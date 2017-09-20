@@ -26,7 +26,8 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "ptrnov/yii2-fusionchart": "*",
         "2amigos/yii2-highcharts-widget": "~1.0",
-        "2amigos/yii2-date-picker-widget": "~1.0"
+        "2amigos/yii2-date-picker-widget": "~1.0",
+        "kartik-v/mpdf": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

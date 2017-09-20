@@ -47,14 +47,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center;'],
                 
             ],
-             [
+           /*  [
                 'attribute' => 'authKey',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center;'],
                 
-            ],
+            ],*/
             // 'accessToken',
-            // 'role',
+            [
+                'attribute' => 'role',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center;'],
+                
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

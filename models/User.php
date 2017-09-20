@@ -34,10 +34,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['nama', 'username', 'password', 'authKey', 'accessToken', 'role'], 'required'],
+            [['nama', 'username', 'password', 'foto', 'role'], 'required'],
             [['role'], 'integer'],
             [['nama', 'username', 'password'], 'string', 'max' => 255],
             [['authKey', 'accessToken'], 'string', 'max' => 50],
+            [['foto'], 'string', 'max' => 100],
         ];
     }
 
@@ -47,12 +48,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+             'id' => 'ID',
             'nama' => 'Nama',
             'username' => 'Username',
             'password' => 'Password',
-            'authKey' => 'Auth Key',
-            'accessToken' => 'Access Token',
+            /*'authKey' => 'Auth Key',
+            'accessToken' => 'Access Token',*/
+            'foto' => 'Foto',
             'role' => 'Role',
         ];
     }
