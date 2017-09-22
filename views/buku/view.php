@@ -18,8 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
 
     <p>
-        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku', ['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku', ['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success btn-flat']) ?>
     </p>
 
     <?= DetailView::widget([ /*menampilkan detail*/

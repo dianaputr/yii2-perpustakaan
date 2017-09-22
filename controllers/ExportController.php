@@ -30,7 +30,7 @@ class ExportController extends Controller
         ];
     }
 
-    public function actionExport($params)
+    public function actionExport()
     {
         $PHPExcel = new \PHPExcel();
 

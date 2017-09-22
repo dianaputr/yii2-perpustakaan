@@ -41,14 +41,7 @@ use app\models\User;
             ], 
         ]); ?>
 
-    <?= $form->field($model, 'id_user')->widget(Select2::classname(), [
-            'data' => User::getList(),
-            'language' => 'de',
-            'options' => ['placeholder' => 'Select a state ...'],
-            'pluginOptions' => [
-                'allowClear' => true
-            ], 
-        ]); ?>
+    
 
     <?= $form->field($model, 'waktu_dipinjam')->widget(DatePicker:: classname(),[
             'model' => $model,
