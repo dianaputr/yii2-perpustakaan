@@ -7,6 +7,8 @@ use Yii;
 use yii\Helpers\ArrayHelper;
 use app\models\Penulis;
 use app\models\Peminjaman;
+use kartik\mpdf\Pdf;
+use yii\helpers\Html;
 
 
 /**
@@ -133,6 +135,14 @@ class Buku extends \yii\db\ActiveRecord
             ->andWhere(['id_buku' => $this->id])
             ->count();
     } 
+    public function getGambar($htmlOptions=[])
+    {
+        if($this->cover == null && !file_exists('@web/uploads/'.$this->cover)){
+            return Html::img('@web/images/avatar.jpg', $htmlOptions);
+        } else {
+            return Html::img('@web/uploads/'.$this->cover, $htmlOptions);
+        }
+    }
 
    
 }

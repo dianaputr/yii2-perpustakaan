@@ -35,7 +35,7 @@ use app\models\Penerbit;
 							<select class="form-control" name="id_jenis" >
 							<option>--Pilih Jenis Buku--</option> 
 							<?php $i=1; foreach (Jenis::find()->all() as $data): ?>
-									<option><?= $data->nama ?></option>
+									<option value="id_jenis"><?= $data->nama ?></option>
 								<?php $i++; endforeach; ?>									
 							</select>
 							</td>
@@ -46,7 +46,7 @@ use app\models\Penerbit;
 							<td><select class="form-control" name="id_penulis" >
 							<option>--Pilih Penulis Buku--</option> 
 							<?php $i=1; foreach (Penulis::find()->all() as $data): ?> 
-									<option><?= $data->nama ?></option>
+									<option value="id_penulis"><?= $data->nama ?></option>
 								<?php $i++; endforeach; ?>									
 							</select></td>
 						</tr>
@@ -56,7 +56,7 @@ use app\models\Penerbit;
 							<td><select class="form-control" name="penerbit" >
 							<option>--Pilih Penerbit Buku--</option> 
 							<?php $i=1; foreach (Penerbit::find()->all() as $data): ?>
-									<option><?= $data->nama ?></option>
+									<option value=""><?= $data->nama ?></option>
 								<?php $i++; endforeach; ?>									
 							</select></td>
 						</tr>
@@ -71,4 +71,4 @@ use app\models\Penerbit;
     </form>
    </div> 
 </div>
-         
+<!--  -->

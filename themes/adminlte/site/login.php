@@ -10,6 +10,13 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+    
+    <div  class="login-pages">
+            <div class="login-logo">
+              <p style="font-weight: bold; color: #62a4ff">Aplikasi Perpustakaan </p>
+              <p class="txt-l" style="font-weight: bold">Program Praktik Industri POLINDRA</p>
+
+            </div>
 
 <div class="login-box">
     <div class="login-box-body">

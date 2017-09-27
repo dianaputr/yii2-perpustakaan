@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
-use dosamigos\datepicker\DatePicker;
+use kartik\date\DatePicker;
 use app\models\Buku;
 use app\models\User;
 /* @var $this yii\web\View */
@@ -35,7 +35,7 @@ use app\models\User;
     <?= $form->field($model, 'id_buku')->widget(Select2::classname(), [
             'data' => Buku::getList(),
             'language' => 'de',
-            'options' => ['placeholder' => 'Select a state ...'],
+            'options' => ['placeholder' => 'Pilih Buku'],
             'pluginOptions' => [
                 'allowClear' => true
             ], 
@@ -44,24 +44,22 @@ use app\models\User;
     
 
     <?= $form->field($model, 'waktu_dipinjam')->widget(DatePicker:: classname(),[
-            'model' => $model,
-            'attribute' => 'date',
-            'template' => '{addon}{input}',
-                'clientOptions' => [
+            'removeButton' => false,
+            'options' => ['placeholder' => 'Tanggal'],
+            'pluginOptions' => [
                     'autoclose' => true,
-                    'format' => 'yyyy-mm-dd',
-                    ]
+                    'format' => 'yyyy-mm-dd',]
+                    
     ]); ?>
 
     <?= $form->field($model, 'waktu_pengembalian')->widget(DatePicker:: classname(),[
-            'model' => $model,
-            'attribute' => 'date',
-            'template' => '{addon}{input}',
-                'clientOptions' => [
+            'removeButton' => false,
+            'options' => ['placeholder' => 'Tanggal'],
+            'pluginOptions' => [
                     'autoclose' => true,
-                    'format' => 'yyyy-mm-dd',
-                    ]
-                    ]); ?>
+                    'format' => 'yyyy-mm-dd',]
+                    
+    ]); ?>
 
     <div class="box-footer">
         <div class="col-sm-offset-2 col-sm-3">

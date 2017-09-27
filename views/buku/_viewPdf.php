@@ -4,26 +4,28 @@ use kartik\mpdf\Pdf;
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 
-<h2>Biodata </h2>
 
-<table width="100%" cellpadding="7">
+
+<h2>DETAIL BUKU </h2>
+
+<table border="1" width="100%" cellpadding="7">
 	<tr>
-		<td width="15%">Nama</td>
-		<td width="2%">:</td>
+		<th width="20%">Nama Buku</th>
+		<td width="3%">:</td>
 		<td><?= $model->nama; ?></td>
 	</tr>
 	<tr>
-		<td>Jenis buku</td>
+		<th>Jenis Buku</th>
 		<td>:</td>
 		<td><?= $model->idJenis->nama; ?></td>
 	</tr>	
 	<tr>
-		<td>Penulis</td>
+		<th>Penulis</th>
 		<td>:</td>
 		<td><?= $model->idPenulis->nama; ?></td>
 	</tr>
 	<tr>
-		<td>Cover</td>
+		<th>Cover</th>
 		<td>:</td>
 		<td><?= $model->cover; ?></td>
 	</tr>

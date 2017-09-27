@@ -64,6 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'cover',
                 'format' => 'raw',
+                'value' => function($data){
+                    return $data->getGambar(['style'=>'width:75px']);
+                }, 
                 'headerOptions' => ['style' => 'text-align:center'],
                 
             ],

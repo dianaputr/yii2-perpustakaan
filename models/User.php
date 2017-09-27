@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
+use kartik\mpdf\Pdf;
 
 /**
  * This is the model class for table "user".

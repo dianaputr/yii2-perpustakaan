@@ -18,34 +18,31 @@
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "kartik-v/yii2-widget-select2": "@dev",
-        "kartik-v/yii2-widget-datepicker": "@dev",
-        "mpdf/mpdf": "@dev",
-        "phpoffice/phpexcel": "^1.8",
-        "phpoffice/phpword": "^0.13.0",
+        "c006/yii2-migration-utility": "^2.0",
+        "kartik-v/yii2-widget-select2": "^2.0",
+        "kartik-v/yii2-widget-datepicker": "^1.4",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "ptrnov/yii2-fusionchart": "*",
-        "2amigos/yii2-highcharts-widget": "~1.0",
-        "2amigos/yii2-date-picker-widget": "~1.0",
-        "kartik-v/mpdf": "^1.0"
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-editable": "*",
+        "kartik-v/yii2-detail-view": "*",
+        "yii2tech/ar-softdelete": "^1.0",
+        "kartik-v/yii2-widget-activeform": "@dev",
+        "2amigos/yii2-ckeditor-widget": "^2.1",
+        "phpoffice/phpexcel": "^1.8",
+        "himiklab/yii2-recaptcha-widget": "*",
+        "kartik-v/yii2-widget-depdrop": "@dev",
+        "phpoffice/phpword": "^0.13.0",
+        "kartik-v/yii2-widget-rating": "*",
+        "kartik-v/yii2-mpdf": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
-        "yiisoft/yii2-faker": "~2.0.0",
-
-        "codeception/base": "^2.2.3",
-        "codeception/verify": "~0.3.1",
-        "codeception/specify": "~0.4.3"
+        "yiisoft/yii2-faker": "~2.0.0"
     },
     "config": {
-        "process-timeout": 1800,
-        "fxp-asset":{
-            "installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        }
+        "process-timeout": 1800
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -64,6 +61,10 @@
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
         }
     }
 }
