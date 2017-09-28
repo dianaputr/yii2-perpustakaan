@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="buku-index box box-primary">
 
     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="box-header">
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Tambah Buku', ['create'], ['class' => 'btn btn-primary btn-flat']) ?>
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'cover',
                 'format' => 'raw',
                 'value' => function($data){
-                    return $data->getGambar(['style'=>'width:75px']);
+                    return $data->getGambar(['style'=>'width:100px']);
                 }, 
                 'headerOptions' => ['style' => 'text-align:center'],
                 

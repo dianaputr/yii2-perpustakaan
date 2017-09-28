@@ -12,6 +12,7 @@ use app\models\Buku;
  */
 class BukuSearch extends Buku
 {
+     public $globalSearch; 
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class BukuSearch extends Buku
     {
         return [
             [['id', 'id_jenis', 'id_penulis'], 'integer'],
-            [['nama', 'cover'], 'safe'],
+            [['nama', 'cover','globalSearch'], 'safe'],
         ];
     }
 
@@ -58,14 +59,17 @@ class BukuSearch extends Buku
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+       /* $query->andFilterWhere([
             'id' => $this->id,
             'id_jenis' => $this->id_jenis,
             'id_penulis' => $this->id_penulis,
-        ]);
+        ]);*/
 
-        $query->andFilterWhere(['like', 'nama', $this->nama])
-            ->andFilterWhere(['like', 'cover', $this->cover]);
+        $query->orFilterWhere(['like', 'id', $this->globalSearch])
+            ->orFilterWhere(['like', 'id_jenis', $this->globalSearch])
+            ->orFilterWhere(['like', 'id_penulis', $this->globalSearch])
+            ->orFilterWhere(['like', 'nama', $this->globalSearch])
+            ->orFilterWhere(['like', 'cover', $this->globalSearch]);
 
         return $dataProvider;
     }
